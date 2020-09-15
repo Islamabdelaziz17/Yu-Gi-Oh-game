@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.islam.yugi.MainActivity"
+    android:background="@drawable/backg"
+    android:elevation="1dp">
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21"
+        tools:layout_editor_absoluteY="134dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/guideline3"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.74626863"
+        tools:layout_editor_absoluteY="450dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/guideline4"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.812"
+        tools:layout_editor_absoluteY="490dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/guideline5"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0"
+        tools:layout_editor_absoluteY="603dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+    <GridLayout
+        android:layout_width="356dp"
+        android:layout_height="307dp"
+        android:id="@+id/battle_map"
+        android:background="@drawable/yugi_battle_map"
+        android:columnCount="7"
+        android:rowCount="5"
+        android:foregroundGravity="top|center_vertical|center_horizontal|center"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp">
+
+        <!--player 1 cards-->
+
+        <!--players-->
+
+        <ImageView
+            app:srcCompat="@drawable/yugi"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/player1"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="-1dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="3dp"
+            />
+
+        <ImageView
+            app:srcCompat="@drawable/lifepoints_counter"
+            android:id="@+id/lifepoints_counter_player1"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_width="48dp"
+            android:layout_marginTop="47dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="-2.3dp"
+            android:background="@drawable/lifepoints_counter"
+            android:layout_gravity="top|center_vertical|center_horizontal|center" />
+
+
+        <TextView
+            android:text="L.P 8000"
+            android:id="@+id/lifepoints1"
+            android:layout_marginTop="57dp"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:textSize="10sp"
+            android:textColor="#ffe65a"
+            android:layout_marginLeft="4dp"
+            android:textColorHint="#f8ffe208" />
+
+        <ImageView
+            android:id="@+id/player2"
+            android:layout_row="0"
+            android:layout_column="6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/joey"
+            android:rotation="180" />
+        <ImageView
+            app:srcCompat="@drawable/lifepoints_counter"
+            android:id="@+id/lifepoints_counter_player2"
+            android:layout_row="0"
+            android:layout_column="6"
+            android:layout_width="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="-8dp"
+            android:background="@drawable/lifepoints_counter"
+            android:layout_gravity="top|center_vertical|center_horizontal|center" />
+
+        <TextView
+            android:text="L.P 8000"
+            android:id="@+id/lifepoints2"
+            android:layout_marginTop="13dp"
+            android:layout_row="0"
+            android:layout_column="6"
+            android:textSize="10sp"
+            android:textColor="#ffe65a"
+            android:layout_marginLeft="1dp"
+            android:textColorHint="@android:color/holo_orange_light"
+            android:rotation="180" />
+
+        <!-- Main deck-->
+
+        <ImageView
+
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/maindeck1"
+            android:layout_row="4"
+            android:layout_column="6"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="-2.5dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="9dp" />
+
+        <!-- Spell || trap cards player1-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/spellortrapcard1_1"
+            android:layout_row="4"
+            android:layout_column="5"
+            android:layout_marginBottom="20dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="-1dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="11dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/spellortrapcard2_1"
+            android:layout_row="4"
+            android:layout_column="4"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="-1dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="11dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/mspellortrapcard3_1"
+            android:layout_row="4"
+            android:layout_column="3"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="-1dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="11dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/spellortrapcard4_1"
+            android:layout_row="4"
+            android:layout_column="2"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="-1dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="11dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/spellortrapcard5_1"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_marginBottom="20dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_margin="-1dp"
+            android:layout_marginTop="11dp" />
+
+        <!-- Monstercards player1-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/monstercard1_1"
+            android:layout_row="3"
+            android:layout_column="5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="-12dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/monstercard2_1"
+            android:layout_row="3"
+            android:layout_column="4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="-12dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/monstercard3_1"
+            android:layout_row="3"
+            android:layout_column="3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="-12dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/monstercard4_1"
+            android:layout_row="3"
+            android:layout_column="2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="-12dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="5dp"
+            android:id="@+id/monstercard5_1"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="-16dp" />
+
+        <!--player 2 cards-->
+
+        <!-- Main deck-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/maindeck2"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="25dp" />
+        <!-- Spell || trap cards player1-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/spellortrapcard1_2"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="-3dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/spellortrapcard2_2"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="6dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/spellortrapcard3_2"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="6dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/spellortrapcard4_2"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="6dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/spellortrapcard5_2"
+            android:layout_row="0"
+            android:layout_column="5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="7dp" />
+
+        <!-- Monster cards player 2-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/monstercard1_2"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="-3dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/monstercard2_2"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="6dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/monstercard3_2"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="6dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/monstercard4_2"
+            android:layout_row="1"
+            android:layout_column="4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="5dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/monstercard5_2"
+            android:layout_row="1"
+            android:layout_column="5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp" />
+
+        <!-- Graveyards-->
+
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/Graveyard_2"
+            android:layout_row="1"
+            android:layout_column="6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp" />
+        <ImageView
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/Graveyard_1"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="-4dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="-2dp" />
+
+    </GridLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        android:layout_marginLeft="6dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        android:id="@+id/turnlayout"
+        android:layout_marginRight="14dp"
+        android:gravity="top|center_vertical|center_horizontal|center|start|end">
+
+        <Button
+            android:text="Draw"
+            android:layout_height="wrap_content"
+            android:id="@+id/button6_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:background="@android:drawable/button_onoff_indicator_on"
+            android:onClick="Draw1" />
+        <Button
+            android:text="Standby"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:textSize="12sp" />
+
+        <Button
+            android:text="main-1"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:textSize="12sp" />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:id="@+id/button4"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:text="Battle"
+            android:textSize="12sp" />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:id="@+id/button5"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:text="main-2"
+            android:textSize="12sp" />
+        <Button
+            android:text="End"
+            android:layout_height="wrap_content"
+            android:id="@+id/button6"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="390dp"
+        android:layout_height="100dp"
+        android:id="@+id/layoutofcards1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/turnlayout"
+        android:layout_marginStart="3dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card1_1"
+            android:layout_weight="1"
+            android:padding="7dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card2_1"
+            android:layout_weight="1"
+            android:padding="7dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card3_1"
+            android:layout_weight="1"
+            android:padding="7dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card4_1"
+            android:layout_weight="1"
+            android:padding="7dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card5_1"
+            android:layout_weight="1"
+            android:padding="7dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+
+
+        app:layout_constraintHorizontal_bias="0.0"
+
+        android:id="@+id/turnlayout2"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/layoutcards2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="top|center_vertical|center_horizontal|center|start|end">
+
+        <Button
+            android:text="End"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:rotation="180"/>
+        <Button
+            android:text="main-2"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:rotation="180"/>
+
+        <Button
+            android:text="battle"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:rotation="180"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:id="@+id/button4_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:text="main1"
+            android:rotation="180"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:id="@+id/button5_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:text="standby"
+            android:rotation="180"/>
+        <Button
+            android:text="Draw"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:rotation="180"
+            android:background="@android:drawable/button_onoff_indicator_on"
+            android:onClick="Draw2" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="390dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:id="@+id/layoutcards2"
+        android:layout_height="100dp"
+        android:layout_marginBottom="25dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card1_2"
+            android:layout_weight="1"
+            android:padding="7dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card2_2"
+            android:layout_weight="1"
+            android:padding="7dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card3_2"
+            android:layout_weight="1"
+            android:padding="7dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card4_2"
+            android:layout_weight="1"
+            android:padding="7dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/deckcards"
+            android:id="@+id/card5_2"
+            android:layout_weight="1"
+            android:padding="7dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
