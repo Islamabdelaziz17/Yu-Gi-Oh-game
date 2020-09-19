@@ -235,7 +235,6 @@
         <!-- Monstercards player1-->
 
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             tools:layout_editor_absoluteY="412dp"
             tools:layout_editor_absoluteX="5dp"
             android:id="@+id/monstercard1_1"
@@ -245,9 +244,9 @@
             android:layout_height="48dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="17dp"
-            android:layout_marginBottom="-12dp" />
+            android:layout_marginBottom="-12dp"
+            android:tag="4"/>
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             tools:layout_editor_absoluteY="412dp"
             tools:layout_editor_absoluteX="5dp"
             android:id="@+id/monstercard2_1"
@@ -257,9 +256,9 @@
             android:layout_height="48dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="17dp"
-            android:layout_marginBottom="-12dp" />
+            android:layout_marginBottom="-12dp"
+            android:tag="3"/>
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             tools:layout_editor_absoluteY="412dp"
             tools:layout_editor_absoluteX="5dp"
             android:id="@+id/monstercard3_1"
@@ -269,9 +268,9 @@
             android:layout_height="48dp"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="17dp"
-            android:layout_marginBottom="-12dp" />
+            android:layout_marginBottom="-12dp"
+            android:tag="2"/>
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             tools:layout_editor_absoluteY="412dp"
             tools:layout_editor_absoluteX="5dp"
             android:id="@+id/monstercard4_1"
@@ -281,9 +280,9 @@
             android:layout_height="48dp"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="17dp"
-            android:layout_marginBottom="-12dp" />
+            android:layout_marginBottom="-12dp"
+            android:tag="1"/>
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             tools:layout_editor_absoluteY="412dp"
             tools:layout_editor_absoluteX="5dp"
             android:id="@+id/monstercard5_1"
@@ -293,7 +292,8 @@
             android:layout_height="48dp"
             android:layout_marginLeft="-2dp"
             android:layout_marginTop="17dp"
-            android:layout_marginBottom="-16dp" />
+            android:layout_marginBottom="-16dp"
+            android:tag="0"/>
 
         <!--player 2 cards-->
 
@@ -358,7 +358,6 @@
         <!-- Monster cards player 2-->
 
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             android:id="@+id/monstercard1_2"
             android:layout_row="1"
             android:layout_column="1"
@@ -367,7 +366,6 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="-3dp" />
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             android:id="@+id/monstercard2_2"
             android:layout_row="1"
             android:layout_column="2"
@@ -376,7 +374,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="6dp" />
         <ImageView
-            app:srcCompat="@drawable/deckcards"
+
             android:id="@+id/monstercard3_2"
             android:layout_row="1"
             android:layout_column="3"
@@ -385,7 +383,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="6dp" />
         <ImageView
-            app:srcCompat="@drawable/deckcards"
+
             android:id="@+id/monstercard4_2"
             android:layout_row="1"
             android:layout_column="4"
@@ -394,7 +392,6 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="5dp" />
         <ImageView
-            app:srcCompat="@drawable/deckcards"
             android:id="@+id/monstercard5_2"
             android:layout_row="1"
             android:layout_column="5"
@@ -467,7 +464,8 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:padding="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:onClick="addViews" />
 
         <Button
             android:layout_height="wrap_content"
@@ -515,7 +513,8 @@
             app:srcCompat="@drawable/deckcards"
             android:id="@+id/card1_1"
             android:layout_weight="1"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:tag="0"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -523,14 +522,16 @@
             app:srcCompat="@drawable/deckcards"
             android:id="@+id/card2_1"
             android:layout_weight="1"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:tag="1"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/deckcards"
             android:id="@+id/card3_1"
             android:layout_weight="1"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:tag="2"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -538,7 +539,8 @@
             app:srcCompat="@drawable/deckcards"
             android:id="@+id/card4_1"
             android:layout_weight="1"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:tag="3"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -546,19 +548,17 @@
             app:srcCompat="@drawable/deckcards"
             android:id="@+id/card5_1"
             android:layout_weight="1"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:tag="4"/>
+
 
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="400dp"
         android:layout_height="30dp"
-
-
         app:layout_constraintHorizontal_bias="0.0"
-
         android:id="@+id/turnlayout2"
-
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/layoutcards2"
