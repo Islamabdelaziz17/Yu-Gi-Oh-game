@@ -1,50 +1,31 @@
 package com.example.islam.yugi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
-import static android.R.attr.breadCrumbShortTitle;
-import static android.R.attr.scaleX;
-import static android.R.attr.width;
-import static com.example.islam.yugi.R.attr.height;
-import static com.example.islam.yugi.R.attr.switchMinWidth;
-import static com.example.islam.yugi.R.id.image;
-import static com.example.islam.yugi.R.id.maindeck1;
-import static com.example.islam.yugi.R.id.monstercard1_2;
-import static com.example.islam.yugi.R.id.monstercard5_1;
-import static com.example.islam.yugi.R.id.monstercard5_2;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity
+{
     LinearLayout layoutofcards1;
     ArrayList<Integer> deckcards;
     ArrayList<Integer> deckcards2;
-    ImageView Maindeck1,Maindeck2,drawncard1,drawncard2,drawncard3,drawncard4,drawncard5,drawncard1_2,drawncard2_2,drawncard3_2,drawncard4_2,drawncard5_2;
+    ImageView Maindeck1,Maindeck2,drawncard1,drawncard2,drawncard3,drawncard4,drawncard5,drawncard1_2,drawncard2_2,drawncard3_2,drawncard4_2,drawncard5_2,newdrawn;
     ImageView monster1,monster2,monster3,monster4,monster5,monster1_2,monster2_2,monster3_2,monster4_2,monster5_2;
+    private MediaPlayer Duel;
     boolean draw1,draw2= true;
 
 
@@ -53,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 ClipData data = ClipData.newPlainText("", "");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                //noinspection deprecation
                 view.startDrag(data,shadowBuilder,view,0);
+
                 return true;
             } else {
                 return false;
@@ -123,30 +104,35 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 assigncards(deckcards.get(0), ((ImageView) v));
                                 v.invalidate();
+                                drawncard1.setVisibility(view1.GONE);
                             }
                         } else if (view1==drawncard2) {
                             if(v == monster2)
                             {
                                 assigncards(deckcards.get(1), ((ImageView) v));
                                 v.invalidate();
+                                drawncard2.setVisibility(view1.GONE);
                             }
                         } else if (view1==drawncard3) {
                             if(v == monster3)
                             {
                                 assigncards(deckcards.get(2), ((ImageView) v));
                                 v.invalidate();
+                                drawncard3.setVisibility(view1.GONE);
                             }
                         } else if (view1==drawncard4) {
                             if(v == monster4)
                             {
                             assigncards(deckcards.get(3), ((ImageView) v));
                             v.invalidate();
+                            drawncard4.setVisibility(view1.GONE);
                             }
                         } else if (view1==drawncard5) {
                             if(v == monster5)
                             {
                                 assigncards(deckcards.get(4), ((ImageView) v));
                                 v.invalidate();
+                                drawncard5.setVisibility(view1.GONE);
                             }
                         }
                     break;
@@ -158,20 +144,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     class MyDragListener2 implements View.OnDragListener {
 
         @Override
         public boolean onDrag(View v, DragEvent event) {
-            int action = event.getAction();
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
                     // do nothing
                     break;
                 case DragEvent.ACTION_DRAG_ENTERED:
-
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
-
                     break;
                 case DragEvent.ACTION_DROP:
 
@@ -183,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                             monster1_2.setRotation(180);
                             assigncards(deckcards2.get(0), ((ImageView) v));
                             v.invalidate();
+                            drawncard1_2.setVisibility(view2.GONE);
                         }
                     } else if (view2==drawncard2_2) {
                         if(v == monster2_2)
@@ -190,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             monster2_2.setRotation(180);
                             assigncards(deckcards2.get(1), ((ImageView) v));
                             v.invalidate();
+                            drawncard2_2.setVisibility(view2.GONE);
                         }
                     } else if (view2==drawncard3_2) {
                         if(v == monster3_2)
@@ -197,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                             monster3_2.setRotation(180);
                             assigncards(deckcards2.get(2), ((ImageView) v));
                             v.invalidate();
+                            drawncard3_2.setVisibility(view2.GONE);
                         }
                     } else if (view2==drawncard4_2) {
                         if(v == monster4_2)
@@ -204,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                             monster4_2.setRotation(180);
                             assigncards(deckcards2.get(3), ((ImageView) v));
                             v.invalidate();
+                            drawncard4_2.setVisibility(view2.GONE);
                         }
                     } else if (view2==drawncard5_2) {
                         if(v == monster5_2)
@@ -211,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                             monster5_2.setRotation(180);
                             assigncards(deckcards2.get(4), ((ImageView) v));
                             v.invalidate();
+                            drawncard5_2.setVisibility(view2.GONE);
                         }
                     }
                     break;
@@ -227,7 +217,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Duel = MediaPlayer.create(MainActivity.this,R.raw.duel);
+        Duel.setLooping(true);
+        Duel.start();
         Maindeck1 = (ImageView) findViewById(R.id.maindeck1);
         Maindeck2 = (ImageView) findViewById(R.id.maindeck2);
 
@@ -245,13 +238,13 @@ public class MainActivity extends AppCompatActivity {
 
         layoutofcards1 = (LinearLayout)findViewById(R.id.layoutofcards1);
 
-        monster1 = (ImageView) findViewById(monstercard5_1);
+        monster1 = (ImageView) findViewById(R.id.monstercard5_1);
         monster2 = (ImageView) findViewById(R.id.monstercard4_1);
         monster3 = (ImageView) findViewById(R.id.monstercard3_1);
         monster4 = (ImageView) findViewById(R.id.monstercard2_1);
         monster5 = (ImageView) findViewById(R.id.monstercard1_1);
 
-        monster1_2 = (ImageView) findViewById(monstercard1_2);
+        monster1_2 = (ImageView) findViewById(R.id.monstercard1_2);
         monster2_2 = (ImageView) findViewById(R.id.monstercard2_2);
         monster3_2 = (ImageView) findViewById(R.id.monstercard3_2);
         monster4_2 = (ImageView) findViewById(R.id.monstercard4_2);
@@ -471,6 +464,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
     // assign image function to each card
     public void assigncards(int card,ImageView image)
     {
@@ -597,8 +592,8 @@ public class MainActivity extends AppCompatActivity {
             drawncard1.animate().translationYBy(1000).setDuration(300);
             drawncard2.animate().translationYBy(1000).setDuration(500);
             drawncard3.animate().translationYBy(1000).setDuration(650);
-            drawncard4.animate().translationYBy(1000).setDuration(800);
-            drawncard5.animate().translationYBy(1000).setDuration(950);
+            drawncard4.animate().translationYBy(1000).setDuration(700);
+            drawncard5.animate().translationYBy(1000).setDuration(800);
             draw1 = false;
 
         }
@@ -621,8 +616,8 @@ public class MainActivity extends AppCompatActivity {
         drawncard1.animate().translationYBy(1000).setDuration(300);
         drawncard2.animate().translationYBy(1000).setDuration(500);
         drawncard3.animate().translationYBy(1000).setDuration(650);
-        drawncard4.animate().translationYBy(1000).setDuration(800);
-        drawncard5.animate().translationYBy(1000).setDuration(950);
+        drawncard4.animate().translationYBy(1000).setDuration(700);
+        drawncard5.animate().translationYBy(1000).setDuration(800);
 
 
     }
@@ -694,16 +689,44 @@ public class MainActivity extends AppCompatActivity {
         drawncard4_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(800);
+                .setDuration(700);
         drawncard5_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(950);
+                .setDuration(800);
 
 
     }
 
+    public void addcard(View view)
+    {
+        newdrawn= new ImageView(MainActivity.this);
+        LinearLayout lineaar = (LinearLayout) findViewById(R.id.layoutofcards1);
+        newdrawn.setPadding(7,7,7,7);
+        //LinearLayout.LayoutParams params LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        Collections.shuffle(deckcards);
+        assigncards(deckcards.get(2),newdrawn);
+        //newdrawn.setLayoutParams(params);
+        //lineaar.addView(newdrawn);
+    }
 
+    @Override
+    public void onBackPressed()
+    {
+        Duel.stop();
+        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
 
 }
