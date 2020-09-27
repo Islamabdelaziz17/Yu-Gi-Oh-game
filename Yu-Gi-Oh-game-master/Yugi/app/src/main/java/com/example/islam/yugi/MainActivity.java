@@ -1,11 +1,15 @@
 package com.example.islam.yugi;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MenuItem;
@@ -13,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity
     class MyDragListener implements View.OnDragListener {
 
         @Override
-        public boolean onDrag(View v, DragEvent event) {
+        public boolean onDrag(final View v, DragEvent event) {
             int action = event.getAction();
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
@@ -97,42 +102,280 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case DragEvent.ACTION_DROP:
 
-                    ImageView view1 = (ImageView)event.getLocalState();
+                    final ImageView view1 = (ImageView)event.getLocalState();
 
                         if (view1 == drawncard1) {
                             if(v == monster1)
                             {
-                                assigncards(deckcards.get(0), ((ImageView) v));
-                                v.invalidate();
-                                drawncard1.setVisibility(view1.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard1,monster1,view1,v,0,deckcards,0);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        "Defense",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+
+                                                builder2.setPositiveButton("Ok",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                monster1.setRotation(90);
+                                                                monster1.setImageResource(R.drawable.deckcards);
+                                                                v.invalidate();
+                                                                drawncard1.setVisibility(view1.GONE);
+                                                                dialog.cancel();
+                                                            }});
+
+                                                builder2.setNegativeButton(
+                                                        "No",
+                                                        new DialogInterface.OnClickListener(){
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                set_card(drawncard1,monster1,view1,v,90,deckcards,0);
+                                                                v.invalidate();
+                                                                dialog.cancel();
+                                                            }});
+
+                                                dialog.cancel();
+                                                AlertDialog alert2 = builder2.create();
+                                                alert2.show();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
+
                             }
                         } else if (view1==drawncard2) {
                             if(v == monster2)
                             {
-                                assigncards(deckcards.get(1), ((ImageView) v));
-                                v.invalidate();
-                                drawncard2.setVisibility(view1.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack)--For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard2,monster2,view1,v,0,deckcards,1);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        "Defense",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+
+                                                builder2.setPositiveButton("Ok",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                monster2.setRotation(90);
+                                                                monster2.setImageResource(R.drawable.deckcards);
+                                                                v.invalidate();
+                                                                drawncard2.setVisibility(view1.GONE);
+                                                                dialog.cancel();
+                                                            }});
+                                                builder2.setNegativeButton(
+                                                        "No",
+                                                        new DialogInterface.OnClickListener(){
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                set_card(drawncard2,monster2,view1,v,90,deckcards,1);
+                                                                v.invalidate();
+                                                                dialog.cancel();
+                                                            }});
+
+                                                dialog.cancel();
+                                                AlertDialog alert2 = builder2.create();
+                                                alert2.show();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
                             }
                         } else if (view1==drawncard3) {
                             if(v == monster3)
                             {
-                                assigncards(deckcards.get(2), ((ImageView) v));
-                                v.invalidate();
-                                drawncard3.setVisibility(view1.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard3,monster3,view1,v,0,deckcards,2);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        "Defense",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+
+                                                builder2.setPositiveButton("Ok",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                monster3.setRotation(90);
+                                                                monster3.setImageResource(R.drawable.deckcards);
+                                                                v.invalidate();
+                                                                drawncard3.setVisibility(view1.GONE);
+                                                                dialog.cancel();
+                                                            }});
+                                                builder2.setNegativeButton(
+                                                        "No",
+                                                        new DialogInterface.OnClickListener(){
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                set_card(drawncard3,monster3,view1,v,90,deckcards,2);
+                                                                v.invalidate();
+                                                                dialog.cancel();
+                                                            }});
+
+                                                dialog.cancel();
+                                                AlertDialog alert2 = builder2.create();
+                                                alert2.show();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
                             }
                         } else if (view1==drawncard4) {
                             if(v == monster4)
                             {
-                            assigncards(deckcards.get(3), ((ImageView) v));
-                            v.invalidate();
-                            drawncard4.setVisibility(view1.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard4,monster4,view1,v,0,deckcards,3);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        "Defense",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+
+                                                builder2.setPositiveButton("Ok",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                monster4.setRotation(90);
+                                                                monster4.setImageResource(R.drawable.deckcards);
+                                                                v.invalidate();
+                                                                drawncard4.setVisibility(view1.GONE);
+                                                                dialog.cancel();
+                                                            }});
+                                                builder2.setNegativeButton(
+                                                        "No",
+                                                        new DialogInterface.OnClickListener(){
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                set_card(drawncard4,monster4,view1,v,90,deckcards,3);
+                                                                v.invalidate();
+                                                                dialog.cancel();
+                                                            }});
+
+                                                dialog.cancel();
+                                                AlertDialog alert2 = builder2.create();
+                                                alert2.show();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
                             }
                         } else if (view1==drawncard5) {
                             if(v == monster5)
                             {
-                                assigncards(deckcards.get(4), ((ImageView) v));
-                                v.invalidate();
-                                drawncard5.setVisibility(view1.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard5,monster5,view1,v,0,deckcards,4);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        "Defense",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+
+                                                builder2.setPositiveButton("Ok",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                monster5.setRotation(90);
+                                                                monster5.setImageResource(R.drawable.deckcards);
+                                                                v.invalidate();
+                                                                drawncard5.setVisibility(view1.GONE);
+                                                                dialog.cancel();
+                                                            }});
+                                                builder2.setNegativeButton(
+                                                        "No",
+                                                        new DialogInterface.OnClickListener(){
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                set_card(drawncard5,monster5,view1,v,90,deckcards,4);
+                                                                v.invalidate();
+                                                                dialog.cancel();
+                                                            }});
+
+                                                dialog.cancel();
+                                                AlertDialog alert2 = builder2.create();
+                                                alert2.show();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
                             }
                         }
                     break;
@@ -149,7 +392,7 @@ public class MainActivity extends AppCompatActivity
     class MyDragListener2 implements View.OnDragListener {
 
         @Override
-        public boolean onDrag(View v, DragEvent event) {
+        public boolean onDrag(final View v, DragEvent event) {
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
                     // do nothing
@@ -160,47 +403,277 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case DragEvent.ACTION_DROP:
 
-                    ImageView view2 = (ImageView)event.getLocalState();
+                    final ImageView view2 = (ImageView)event.getLocalState();
 
                     if (view2 == drawncard1_2) {
                         if(v == monster1_2)
                         {
-                            monster1_2.setRotation(180);
-                            assigncards(deckcards2.get(0), ((ImageView) v));
-                            v.invalidate();
-                            drawncard1_2.setVisibility(view2.GONE);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                            builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                            builder1.setCancelable(true);
+                            final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                            builder2.setMessage("Do you want to (Set) Defense card ?");
+                            builder2.setCancelable(true);
+
+                            builder1.setPositiveButton(
+                                    "Attack",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            set_card(drawncard1_2,monster1_2,view2,v,180,deckcards2,0);
+                                            v.invalidate();
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            builder1.setNegativeButton(
+                                    "Defense",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, int id) {
+
+                                            builder2.setPositiveButton("Ok",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            monster1_2.setRotation(90);
+                                                            monster1_2.setImageResource(R.drawable.deckcards);
+                                                            v.invalidate();
+                                                            drawncard1_2.setVisibility(view2.GONE);
+                                                            dialog.cancel();
+                                                        }});
+                                            builder2.setNegativeButton(
+                                                    "No",
+                                                    new DialogInterface.OnClickListener(){
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            set_card(drawncard1_2,monster1_2,view2,v,90,deckcards2,0);
+                                                            v.invalidate();
+                                                            dialog.cancel();
+                                                        }});
+
+                                            dialog.cancel();
+                                            AlertDialog alert2 = builder2.create();
+                                            alert2.show();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
                         }
                     } else if (view2==drawncard2_2) {
                         if(v == monster2_2)
                         {
-                            monster2_2.setRotation(180);
-                            assigncards(deckcards2.get(1), ((ImageView) v));
-                            v.invalidate();
-                            drawncard2_2.setVisibility(view2.GONE);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                                builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                                builder1.setCancelable(true);
+                                final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                                builder2.setMessage("Do you want to (Set) Defense card ?");
+                                builder2.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Attack",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                set_card(drawncard2_2,monster2_2,view2,v,180,deckcards2,1);
+                                                v.invalidate();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                            builder1.setNegativeButton(
+                                    "Defense",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, int id) {
+
+                                            builder2.setPositiveButton("Ok",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            monster2_2.setRotation(90);
+                                                            monster2_2.setImageResource(R.drawable.deckcards);
+                                                            v.invalidate();
+                                                            drawncard2_2.setVisibility(view2.GONE);
+                                                            dialog.cancel();
+                                                        }});
+                                            builder2.setNegativeButton(
+                                                    "No",
+                                                    new DialogInterface.OnClickListener(){
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            set_card(drawncard2_2,monster2_2,view2,v,90,deckcards2,1);
+                                                            v.invalidate();
+                                                            dialog.cancel();
+                                                        }});
+
+                                            dialog.cancel();
+                                            AlertDialog alert2 = builder2.create();
+                                            alert2.show();
+                                        }
+                                    });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
                         }
                     } else if (view2==drawncard3_2) {
                         if(v == monster3_2)
                         {
-                            monster3_2.setRotation(180);
-                            assigncards(deckcards2.get(2), ((ImageView) v));
-                            v.invalidate();
-                            drawncard3_2.setVisibility(view2.GONE);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                            builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                            builder1.setCancelable(true);
+                            final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                            builder2.setMessage("Do you want to (Set) Defense card ?");
+                            builder2.setCancelable(true);
+
+                            builder1.setPositiveButton(
+                                    "Attack",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            set_card(drawncard3_2,monster3_2,view2,v,180,deckcards2,2);
+                                            v.invalidate();
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            builder1.setNegativeButton(
+                                    "Defense",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, int id) {
+
+                                            builder2.setPositiveButton("Ok",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            monster3_2.setRotation(90);
+                                                            monster3_2.setImageResource(R.drawable.deckcards);
+                                                            v.invalidate();
+                                                            drawncard3_2.setVisibility(view2.GONE);
+                                                            dialog.cancel();
+                                                        }});
+                                            builder2.setNegativeButton(
+                                                    "No",
+                                                    new DialogInterface.OnClickListener(){
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            set_card(drawncard3_2,monster3_2,view2,v,90,deckcards2,2);
+                                                            v.invalidate();
+                                                            dialog.cancel();
+                                                        }});
+
+                                            dialog.cancel();
+                                            AlertDialog alert2 = builder2.create();
+                                            alert2.show();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
                         }
                     } else if (view2==drawncard4_2) {
                         if(v == monster4_2)
                         {
-                            monster4_2.setRotation(180);
-                            assigncards(deckcards2.get(3), ((ImageView) v));
-                            v.invalidate();
-                            drawncard4_2.setVisibility(view2.GONE);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                            builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                            builder1.setCancelable(true);
+                            final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                            builder2.setMessage("Do you want to (Set) Defense card ?");
+                            builder2.setCancelable(true);
+
+                            builder1.setPositiveButton(
+                                    "Attack",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            set_card(drawncard4_2,monster4_2,view2,v,180,deckcards2,3);
+                                            v.invalidate();
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            builder1.setNegativeButton(
+                                    "Defense",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, int id) {
+
+                                            builder2.setPositiveButton("Ok",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            monster4_2.setRotation(90);
+                                                            monster4_2.setImageResource(R.drawable.deckcards);
+                                                            v.invalidate();
+                                                            drawncard4_2.setVisibility(view2.GONE);
+                                                            dialog.cancel();
+                                                        }});
+                                            builder2.setNegativeButton(
+                                                    "No",
+                                                    new DialogInterface.OnClickListener(){
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            set_card(drawncard4_2,monster4_2,view2,v,90,deckcards2,3);
+                                                            v.invalidate();
+                                                            dialog.cancel();
+                                                        }});
+
+                                            dialog.cancel();
+                                            AlertDialog alert2 = builder2.create();
+                                            alert2.show();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
                         }
                     } else if (view2==drawncard5_2) {
                         if(v == monster5_2)
                         {
-                            monster5_2.setRotation(180);
-                            assigncards(deckcards2.get(4), ((ImageView) v));
-                            v.invalidate();
-                            drawncard5_2.setVisibility(view2.GONE);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                            builder1.setMessage("FOR ATTACK POSITION PRESS (Attack) -- For DEFENSE POSITION PRESS (Defense)");
+                            builder1.setCancelable(true);
+                            final AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                            builder2.setMessage("Do you want to (Set) Defense card ?");
+                            builder2.setCancelable(true);
+
+                            builder1.setPositiveButton(
+                                    "Attack",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            set_card(drawncard5_2,monster5_2,view2,v,180,deckcards2,4);
+                                            v.invalidate();
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            builder1.setNegativeButton(
+                                    "Defense",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, int id) {
+
+                                            builder2.setPositiveButton("Ok",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            monster5_2.setRotation(90);
+                                                            monster5_2.setImageResource(R.drawable.deckcards);
+                                                            v.invalidate();
+                                                            drawncard5_2.setVisibility(view2.GONE);
+                                                            dialog.cancel();
+                                                        }});
+                                            builder2.setNegativeButton(
+                                                    "No",
+                                                    new DialogInterface.OnClickListener(){
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            set_card(drawncard5_2,monster5_2,view2,v,90,deckcards2,4);
+                                                            v.invalidate();
+                                                            dialog.cancel();
+                                                        }});
+
+                                            dialog.cancel();
+                                            AlertDialog alert2 = builder2.create();
+                                            alert2.show();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
                         }
                     }
                     break;
@@ -306,7 +779,7 @@ public class MainActivity extends AppCompatActivity
         //spell & trap cards animations;
 
 
-        /*drawncard1.setOnClickListener(new View.OnClickListener() {
+        monster1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v)
@@ -337,7 +810,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        drawncard2.setOnClickListener(new View.OnClickListener() {
+
+        monster2.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v)
@@ -368,7 +842,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        drawncard3.setOnClickListener(new View.OnClickListener() {
+        monster3.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v)
@@ -399,7 +873,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        drawncard4.setOnClickListener(new View.OnClickListener() {
+        monster4.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v)
@@ -430,7 +904,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        drawncard5.setOnClickListener(new View.OnClickListener() {
+        monster5.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v)
@@ -459,10 +933,160 @@ public class MainActivity extends AppCompatActivity
                                     }}
                         ).start();
             }
-        });*/
+        });
+
+        monster1_2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v)
+            {
+                v = monster1_2;
+                // first quarter turn
+                final View finalV = v;
+
+                v.animate().withLayer()
+                        .rotationY(90)
+                        .setDuration(350)
+                        .withEndAction(
+                                new Runnable()
+                                {
+                                    @Override public void run()
+                                    {
+
+                                        finalV.setCameraDistance(10* finalV.getWidth());
+                                        assigncards(deckcards2.get(0),monster1_2);
+                                        // second quarter turn
+                                        finalV.setRotationY(-90);
+                                        finalV.animate().withLayer()
+                                                .rotationY(0)
+                                                .setDuration(350)
+                                                .start();
+                                    }}
+                        ).start();
+            }
+        });
 
 
+        monster2_2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v)
+            {
+                v = monster2_2;
+                // first quarter turn
+                final View finalV = v;
 
+                v.animate().withLayer()
+                        .rotationY(90)
+                        .setDuration(350)
+                        .withEndAction(
+                                new Runnable()
+                                {
+                                    @Override public void run()
+                                    {
+
+                                        finalV.setCameraDistance(10* finalV.getWidth());
+                                        assigncards(deckcards2.get(1),monster2_2);
+                                        // second quarter turn
+                                        finalV.setRotationY(-90);
+                                        finalV.animate().withLayer()
+                                                .rotationY(0)
+                                                .setDuration(350)
+                                                .start();
+                                    }}
+                        ).start();
+            }
+        });
+        monster3_2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v)
+            {
+                v = monster3_2;
+                // first quarter turn
+                final View finalV = v;
+
+                v.animate().withLayer()
+                        .rotationY(90)
+                        .setDuration(350)
+                        .withEndAction(
+                                new Runnable()
+                                {
+                                    @Override public void run()
+                                    {
+
+                                        finalV.setCameraDistance(10* finalV.getWidth());
+                                        assigncards(deckcards2.get(2),monster3_2);
+                                        // second quarter turn
+                                        finalV.setRotationY(-90);
+                                        finalV.animate().withLayer()
+                                                .rotationY(0)
+                                                .setDuration(350)
+                                                .start();
+                                    }}
+                        ).start();
+            }
+        });
+        monster4_2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v)
+            {
+                v = monster4_2;
+                // first quarter turn
+                final View finalV = v;
+
+                v.animate().withLayer()
+                        .rotationY(90)
+                        .setDuration(350)
+                        .withEndAction(
+                                new Runnable()
+                                {
+                                    @Override public void run()
+                                    {
+
+                                        finalV.setCameraDistance(10* finalV.getWidth());
+                                        assigncards(deckcards2.get(3),monster4_2);
+                                        // second quarter turn
+                                        finalV.setRotationY(-90);
+                                        finalV.animate().withLayer()
+                                                .rotationY(0)
+                                                .setDuration(350)
+                                                .start();
+                                    }}
+                        ).start();
+            }
+        });
+        monster5_2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v)
+            {
+                v = monster5_2;
+                // first quarter turn
+                final View finalV = v;
+
+                v.animate().withLayer()
+                        .rotationY(90)
+                        .setDuration(350)
+                        .withEndAction(
+                                new Runnable()
+                                {
+                                    @Override public void run()
+                                    {
+
+                                        finalV.setCameraDistance(10* finalV.getWidth());
+                                        assigncards(deckcards2.get(4),monster5_2);
+                                        // second quarter turn
+                                        finalV.setRotationY(-90);
+                                        finalV.animate().withLayer()
+                                                .rotationY(0)
+                                                .setDuration(350)
+                                                .start();
+                                    }}
+                        ).start();
+            }
+        });
     }
 
 
@@ -570,7 +1194,8 @@ public class MainActivity extends AppCompatActivity
             case 33:
                 image.setImageResource(R.drawable.thirty5);
                 break;
-
+            case 111:
+                image.setImageResource(R.drawable.deckcards);
 
         }
     }
@@ -589,11 +1214,11 @@ public class MainActivity extends AppCompatActivity
             assigncards(deckcards.get(3), drawncard4);
             assigncards(deckcards.get(4), drawncard5);
 
-            drawncard1.animate().translationYBy(1000).setDuration(300);
-            drawncard2.animate().translationYBy(1000).setDuration(500);
-            drawncard3.animate().translationYBy(1000).setDuration(650);
-            drawncard4.animate().translationYBy(1000).setDuration(700);
-            drawncard5.animate().translationYBy(1000).setDuration(800);
+            drawncard1.animate().translationYBy(1000).setDuration(1250);
+            drawncard2.animate().translationYBy(1000).setDuration(1450);
+            drawncard3.animate().translationYBy(1000).setDuration(1650);
+            drawncard4.animate().translationYBy(1000).setDuration(1850);
+            drawncard5.animate().translationYBy(1000).setDuration(2000);
             draw1 = false;
 
         }
@@ -613,11 +1238,11 @@ public class MainActivity extends AppCompatActivity
         assigncards(deckcards.get(4), drawncard5);
 
 
-        drawncard1.animate().translationYBy(1000).setDuration(300);
-        drawncard2.animate().translationYBy(1000).setDuration(500);
-        drawncard3.animate().translationYBy(1000).setDuration(650);
-        drawncard4.animate().translationYBy(1000).setDuration(700);
-        drawncard5.animate().translationYBy(1000).setDuration(800);
+        drawncard1.animate().translationYBy(1000).setDuration(1250);
+        drawncard2.animate().translationYBy(1000).setDuration(1450);
+        drawncard3.animate().translationYBy(1000).setDuration(1650);
+        drawncard4.animate().translationYBy(1000).setDuration(1850);
+        drawncard5.animate().translationYBy(1000).setDuration(2000);
 
 
     }
@@ -637,23 +1262,23 @@ public class MainActivity extends AppCompatActivity
             drawncard1_2.animate()
                     .translationYBy(-1000)
                     .rotation(180)
-                    .setDuration(300);
+                    .setDuration(1250);
             drawncard2_2.animate()
                     .translationYBy(-1000)
                     .rotation(180)
-                    .setDuration(500);
+                    .setDuration(1450);
             drawncard3_2.animate()
                     .translationYBy(-1000)
                     .rotation(180)
-                    .setDuration(650);
+                    .setDuration(1650);
             drawncard4_2.animate()
                     .translationYBy(-1000)
                     .rotation(180)
-                    .setDuration(800);
+                    .setDuration(1850);
             drawncard5_2.animate()
                     .translationYBy(-1000)
                     .rotation(180)
-                    .setDuration(950);
+                    .setDuration(2000);
             draw2 = false;
 
         }
@@ -676,37 +1301,36 @@ public class MainActivity extends AppCompatActivity
         drawncard1_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(300);
-
+                .setDuration(1250);
         drawncard2_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(500);
+                .setDuration(1450);
         drawncard3_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(650);
+                .setDuration(1650);
         drawncard4_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(700);
+                .setDuration(1850);
         drawncard5_2.animate()
                 .translationYBy(-1000)
                 .rotation(180)
-                .setDuration(800);
-
-
+                .setDuration(2000);
     }
 
     public void addcard(View view)
     {
-        newdrawn= new ImageView(MainActivity.this);
-        LinearLayout lineaar = (LinearLayout) findViewById(R.id.layoutofcards1);
+        newdrawn= (ImageView) findViewById(R.id.card6_1) ;
+        newdrawn.setTranslationY(-1000);
+        newdrawn.animate().translationYBy(1000).setDuration(1450);
+        //LinearLayout lineaar = (LinearLayout) findViewById(R.id.layoutofcards1);
         newdrawn.setPadding(7,7,7,7);
-        //LinearLayout.LayoutParams params LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        Collections.shuffle(deckcards);
+        //newdrawn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        //Collections.shuffle(deckcards);
         assigncards(deckcards.get(2),newdrawn);
-        //newdrawn.setLayoutParams(params);
+        newdrawn.setVisibility(View.VISIBLE);
         //lineaar.addView(newdrawn);
     }
 
@@ -727,6 +1351,15 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         return false;
+    }
+
+    
+    public void set_card(ImageView img,ImageView monster,View view,View v,int rotation,ArrayList deck,int index)
+    {
+        monster.setRotation(rotation);
+        assigncards((Integer) deck.get(index),(ImageView)v);
+        img.setVisibility(view.GONE);
+
     }
 
 }

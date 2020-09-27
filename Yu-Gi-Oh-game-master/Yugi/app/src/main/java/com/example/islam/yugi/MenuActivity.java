@@ -32,8 +32,6 @@ public class MenuActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-        //Theme = MediaPlayer.create(MenuActivity.this,R.raw.maintheme);
-        //Theme.start();
 
         logo = (ImageView)findViewById(R.id.logo);
     }
