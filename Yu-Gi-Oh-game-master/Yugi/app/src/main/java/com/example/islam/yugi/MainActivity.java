@@ -1,5 +1,6 @@
 package com.example.islam.yugi;
 
+
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     }
-
     class MyDragListener implements View.OnDragListener {
 
         @Override

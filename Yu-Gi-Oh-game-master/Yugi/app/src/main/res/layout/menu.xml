@@ -111,9 +111,10 @@
             android:id="@+id/logo"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/logooo"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            app:srcCompat="@drawable/logooo" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
