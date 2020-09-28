@@ -498,7 +498,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="addcard"
+            android:onClick="addcard1"
             android:padding="5dp"
             android:text="main-1"
             android:textSize="12sp" />
@@ -650,7 +650,8 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:rotation="180"
-            android:text="main1" />
+            android:text="main1"
+            android:onClick="addcard2"/>
 
         <Button
             android:id="@+id/button5_2"
@@ -726,5 +727,13 @@
             android:layout_weight="1"
             android:padding="7dp"
             app:srcCompat="@drawable/deckcards" />
+        <ImageView
+            android:id="@+id/card6_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="7dp"
+            app:srcCompat="@drawable/deckcards"
+            android:visibility="gone"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
